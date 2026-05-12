@@ -1,25 +1,29 @@
 @extends('layouts.app')
-@section('title', 'Data Mahasiswa')
+@section('title', 'Daftar Mahasiswa')
 
 @section('content')
-<h2>Data Mahasiswa</h2>
-<x-alert type="info" message="Menampilkan 15 data mahasiswa (Dummy Data)"/>
+<div class="d-flex justify-content-between align-items-center mb-3">
+    <h2>Data Mahasiswa</h2>
+    <form class="d-flex" role="search">
+        <input class="form-control me-2" type="search" placeholder="Cari NIM/Nama...">
+        <button class="btn btn-outline-primary" type="submit">Cari</button>
+    </form>
+</div>
 
 <div class="table-responsive">
-    <table class="table table-striped table-hover">
+    <table class="table table-hover shadow-sm">
         <thead class="table-dark">
             <tr>
-                <th>No</th><th>Nama</th><th>NIM</th><th>Jurusan</th><th>Angkatan</th><th>Status</th>
+                <th>No</th><th>Nama</th><th>NIM</th><th>Jurusan</th><th>Status</th>
             </tr>
         </thead>
         <tbody>
             @foreach($students as $mhs)
             <tr>
-                <td>{{ $mhs['nomor'] }}</td>
+                <td>{{ $loop->iteration }}</td>
                 <td>{{ $mhs['nama'] }}</td>
                 <td>{{ $mhs['nim'] }}</td>
                 <td>{{ $mhs['jurusan'] }}</td>
-                <td>{{ $mhs['angkatan'] }}</td>
                 <td>
                     @if($mhs['status'] == 'Aktif')
                         <span class="badge bg-success">Aktif</span>
